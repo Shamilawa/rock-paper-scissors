@@ -1,0 +1,112 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //get computer input
+        function computerPlay() {
+            let availableChoices = ["rock" , "paper", "scissors"];
+            let computerChoice = availableChoices[Math.floor(Math.random() * 3)];
+            return computerChoice;
+        }
+
+        //Get User Inpute
+        function userPlay() {
+            let userChoice = prompt("Enter Rock, Paper or Scissors.").toLowerCase();
+            
+            while (userChoice !== "rock" && userChoice !== "paper" && userChoice !== "scissors") {
+                console.log("Invalid Word....!");
+                userChoice = prompt("Enter Rock, Paper or Scissors.").toLowerCase();
+            }
+
+            return userChoice;
+        } 
+
+        //Play a round
+        function playRound() {
+            let playerSelection = userPlay();
+            let computerSelection = computerPlay();
+
+            if (playerSelection == computerSelection) {
+                console.log("It's a Draw! Both Select " + playerSelection);
+                result = "draw";
+
+            } else if (playerSelection === "paper") { //if player choose paper
+                if (computerSelection === "rock"){
+                    console.log("You Won! " + playerSelection + " beat " + computerSelection);
+                    result = "won";
+
+                }else {
+                    console.log("You lose! " + computerSelection + " beat " + playerSelection);
+                    result = "loss";
+                }
+
+            } else if (playerSelection === "rock") { //if player choose rock
+                if (computerSelection === "scissors"){
+                    console.log("You Won! " + playerSelection + " beat " + computerSelection);
+                    result = "won";
+
+                }else {
+                    console.log("You lose! " + computerSelection + " beat " + playerSelection);
+                    result = "loss";
+                }
+
+            } else if (playerSelection === "scissors") { //if player choose scissors
+                if (computerSelection === "paper") {
+                    console.log("You Won! " + playerSelection + " beat " + computerSelection);
+                    result = "won";
+
+                }else {
+                    console.log("You lose! " + computerSelection + " beat " + playerSelection);
+                    result = "loss";
+                }
+            }
+            return result;
+        }
+
+
+
+
+        //game function
+        function game() {
+            let playerScore = 0;
+            let computerScore = 0;
+            let gameRound = 0;
+
+            while (gameRound < 5) { //Run game for five time
+                let resultHolder = playRound();
+                ++gameRound;
+
+                //Display Results
+                if(resultHolder == "won") {
+                    ++playerScore;
+                    console.log("Player Score = " + playerScore + " || " + "Computer Score " + computerScore);
+                }else if (resultHolder == "loss") {
+                    ++computerScore;
+                    console.log("Player Score = " + playerScore + " || " + "Computer Score " + computerScore);
+                }else {
+                    console.log("Player Score = " + playerScore + " || " + "Computer Score " + computerScore);
+                }
+            }
+
+            //final result
+            if (computerScore == playerScore) {
+                console.log("Game Tied! No One Win");
+            }else if (computerScore > playerScore) {
+                console.log("Sorry YOu Lose & Computer Won");
+            }else {
+                console.log("Congratulation You Won");
+            }    
+        }
+
+        
+
+        game();
+
+    </script>
+</body>
+</html>
